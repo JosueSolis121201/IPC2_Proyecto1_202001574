@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='us-ascii'?>
+<empresa>
+ <empleado id="1">
+    <nombre>Jos&#233; Ernesto</nombre>
+    <username>jose</username>
+    <password>321423</password>
+ </empleado>
+ <elmail>clientes@asdsad</elmail><empleado id="2">
+    <nombre>Daniel P&#233;rez</nombre>
+    <username>dperez</username>
+    <password>433543</password>
+ </empleado>
+</empresa>
