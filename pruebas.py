@@ -14,8 +14,16 @@ class numero:                   #Clase
     def Numero(self):           #Funcion
         print("este es el numero"+self.numero)
 
+
+    def funcion(self,hola):
+        print(hola)
+
 numero1=numero("este es 1")     #Instancias
-numero1.Numero()
+
+
+nerito = "guau miau"
+numero1.funcion(nerito)
+
 
 class letras:
     print("sadwa")

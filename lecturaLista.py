@@ -1,9 +1,3 @@
-from calendar import c
-from turtle import clear
-from xml.etree.ElementTree import parse, Element
-
-
-
 class Nodo:
     def __init__(self, dato):
         self.dato = dato
@@ -43,15 +37,19 @@ class ListaDoble:
 #
 #      cmd.("graph - text.txt")
 
+    def graficar(self):
+        return "algo"
+
 
     def imprimir(self,):
         puntero= self.end
         while puntero != None:
-            print(puntero.dato)
+            if hasattr(puntero.dato, 'imprimir'): 
+                puntero.dato.imprimir()
+            else:
+                print(puntero.dato)
             puntero = puntero.anterior
           
-        print("1")
-
 
 
 
@@ -62,34 +60,4 @@ class ListaDoble:
 
 #    lista.imprimir()
 
-class lectorXML:
-    def __init__(self,xml):
-        self.archivo = xml
-
-
-    def leerXML(self):
-        nombre_archivo ="datos.xml"
-        doc_xml = parse(nombre_archivo)
-        raiz = doc_xml.getroot()    #ejecuta raiz
-        print(raiz)
-
-        #remocion de elementos
-        #raiz.remove(raiz.find(""))
-
-        #insertar un nuevo nodo
-        raiz.get(raiz.find("empleado"))   
-
-        nodo_email = Element("elmail")
-        nodo_email.text="clientes@asdsad"
-
-        raiz.insert(1, nodo_email)
-
-        #Estructura archivo xml modificado
-        nombre_archivo_nuevo = "almacen_nuevo.xml"
-        doc_xml.write(nombre_archivo_nuevo, xml_declaration=True)
-
-        #           
-
-archivo = lectorXML("")
-archivo.leerXML()
 
