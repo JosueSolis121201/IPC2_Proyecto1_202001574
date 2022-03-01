@@ -1,3 +1,6 @@
+import string
+
+
 class Nodo:
     def __init__(self, dato):
         self.dato = dato
@@ -24,26 +27,23 @@ class ListaDoble:
             self.head = nuevoNodo
 
 
-#    def imprimirG(self,):   
-#       graph = ""
 
-#       puntero= self.end
-#       while puntero != None:
-#          print(puntero.dato)
-#          graph = graph + "N+"id(puntero)"[BLA BLA]" + "N"+id(puntero)"->" + "N"+id(puntero.siguiente)
-#         puntero = puntero.anterior
-#
-#       escribir(graph)
-#
-#      cmd.("graph - text.txt")
 
     def graficar(self):
-        return "algo"
+        puntero= self.end
+        concateniacion=""
+        while puntero != None:
+            if hasattr(puntero.dato, 'imprimir'): 
+                concateniacion=concateniacion + puntero.dato.string()
+            else:
+                print(puntero.dato)
+            puntero = puntero.anterior
+        return concateniacion  
 
 
     def imprimir(self,):
         puntero= self.end
-        while puntero != None:
+        while puntero != None: 
             if hasattr(puntero.dato, 'imprimir'): 
                 puntero.dato.imprimir()
             else:
