@@ -38,10 +38,12 @@ class ListaDoble:
             else:
                 print(puntero.dato)
             puntero = puntero.anterior
-        return concateniacion  
+        return concateniacion
 
 
-    def imprimir(self,):
+
+
+    def imprimir(self):
         puntero= self.end
         while puntero != None: 
             if hasattr(puntero.dato, 'imprimir'): 
@@ -52,12 +54,5 @@ class ListaDoble:
           
 
 
-
-#lista = ListaDoble()
-#for i in [1,2,3,4,5,6,7,8]:
-#    lista.agregar(i)
-
-
-#    lista.imprimir()
 
 
