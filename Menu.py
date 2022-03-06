@@ -13,8 +13,8 @@ class Programa:
     def __init__(self):
         self.listamatrices = ListaDoble()
         self.contador=0
+        self.menu()
 
-        self.leerXML()
         #self.menu()
 
 
@@ -76,7 +76,6 @@ class Programa:
 
 
 
-            print("patronid:%s " % patronid)
             print("nombre:%s " % sid)
             print("R:%s" % R)
             print("C:%s" % C)
@@ -95,8 +94,8 @@ class Programa:
 
 
 
-        self.listamatrices.graficar_todo()
-        self.listamatrices.costo_todos()
+       # self.listamatrices.graficar_todo()
+        #self.listamatrices.costo_todos()
 
 
 
@@ -109,21 +108,27 @@ class Programa:
             while True:
                 x=input('''
         1. Cargar datos
-        2. Cargar Intrucciones
-        3. Analizar
-        4. Reportes
+        2. Generar piso actual
+        3. Costes del piso futuro
+        4. Generar Todo
         5. Salir
         Escoja una opcion:''')
                 if x =="1":
-                    pass
+                    self.leerXML()
+
                 elif x =="2":
-                    pass
+                    self.listamatrices.graficar_original(input("introdusca el nombre de el piso deseado:"))
+
                 elif x =="3":
-                 pass
+                    y=input("introdusca el nombre de el piso deseado:")
+                    self.listamatrices.graficar_futuro(str(y))
+                    self.listamatrices.costo_uno(str(y))
                 elif x =="4":
-                    pass
+                    self.listamatrices.graficar_todo()
+                    self.listamatrices.costo_todos()
                 elif x =="5":
-                    pass
+                    print("saliendo...")
+                    break
                 else:
                     print("Escoja un dato valido porfavor:")
 
