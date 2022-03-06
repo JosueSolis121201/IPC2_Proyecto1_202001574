@@ -8,32 +8,44 @@ from graphviz import Source
 
 
 class Matriz:
-    def __init__(self):
-        self.R=2
-        self.C=4
-        self.F=1
-        self.S= 2
-        self.patron = "WBWBWWWB"
-        self.patron_futuro = "BWBWWWWW"
+    def __init__(self,R,C,F,S,sid,patronid,patron,patron_futuro):
+        self.R=int(R)
+        self.C=int(C)
+        self.F=int(F)
+        self.S=int(S)
+        self.patron = patron
+        self.patron_futuro = patron_futuro
         self.lista_filas = ListaDoble()
         self.lista_filas_futuro = ListaDoble()
         self.costo=0
+        self.sid=sid
+        self.patronid=patronid
 
-
-      #  self.cargarPatron()
-      #  self.graficar()
         
-      #  self.cargarPatron_futuro()
-     #   self.graficar_futuro()
-        self.calcular_costos()
+    
+
+
+        copia = self.patron
+        self.cargarPatron_futuro()
+        self.cargarPatron()
+        self.patron = copia
+      
+        #self.graficar()
+        #self.graficar_futuro()
+        #self.calcular_costos()
 
     def calcular_costos(self):
         self.costo=0
         patronCopia = self.patron
-        self.algoritmo()
-        self.voltear()
+        print("*******************************")
+        print("Calculando Costo De: " + self.sid)
+        if self.F < self.S:
+            self.voltear()
+        else:
+            self.algoritmo()
+            self.voltear()
         self.patron = patronCopia
-
+        print("El Costo De "+self.sid+" Es:"+ str(self.costo))
 
     def cargarPatron(self):
         contador=0
@@ -45,7 +57,7 @@ class Matriz:
                 fila.agregar_columnas(columna)
                 contador=contador+1
             self.lista_filas.agregar(fila)
-        self.lista_filas.imprimir()
+        #self.lista_filas.imprimir()
 
     def cargarPatron_futuro(self):
         contador=0
@@ -57,7 +69,7 @@ class Matriz:
                 fila.agregar_columnas(columna)
                 contador=contador+1
             self.lista_filas_futuro.agregar(fila)
-        self.lista_filas_futuro.imprimir()
+        #self.lista_filas_futuro.imprimir()
 
     def algoritmo (self):
         contador=0
@@ -89,7 +101,6 @@ class Matriz:
                         print(str(contador) + " abajo")
                 contador=contador+1
         self.costo=costo+self.costo
-        print(str(self.costo) + " costo")
 
     def voltear (self):
         contador=0
@@ -101,9 +112,7 @@ class Matriz:
                 self.patron = self.patron[:contador] + self.patron_futuro[contador] + self.patron[contador + 1:]
             contador = contador + 1
         self.costo=costo+self.costo    
-        print(str(self.costo) + " costo")
-
-
+     
     def graficar(self):
         inicio = """digraph html {
  abc [shape=none, margin=0, label=<
@@ -112,7 +121,7 @@ class Matriz:
  
         medio = self.lista_filas.graficar()
         documento = inicio + medio + final
-        g = Source(documento, filename='hello.gv',format="png")
+        g = Source(documento, filename=self.sid+'_copia.gv',format="png")
         g.view()
 
     def graficar_futuro(self):
@@ -123,7 +132,7 @@ class Matriz:
  
         medio = self.lista_filas_futuro.graficar()
         documento = inicio + medio + final
-        g = Source(documento, filename='hello2.gv',format="png")
+        g = Source(documento, filename=self.sid+'_original.gv',format="png")
         g.view()
     
       
@@ -138,7 +147,6 @@ class Fila:
         self.lista_columnas.agregar(columna)
         
     def imprimir(self):
-        print("//////")
         self.lista_columnas.imprimir()
 
     def string(self):
@@ -164,4 +172,4 @@ class Columna:
 
 
 
-a = Matriz()
+
